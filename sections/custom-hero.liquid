@@ -1,0 +1,63 @@
+<div class="custom-hero-section">
+  <div class="hero-content">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.description }}</p>
+    <a href="{{ section.settings.button_link }}" class="hero-button">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+</div>
+
+<style>
+  .custom-hero-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+  }
+  .hero-content h2 { margin-bottom: 20px; color: #333; }
+  .hero-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Judul",
+      "default": "Selamat Datang di Toko Kami"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Deskripsi",
+      "default": "Jelajahi koleksi fashion terbaru kami."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Teks Tombol",
+      "default": "Belanja Sekarang"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Tautan Tombol"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
