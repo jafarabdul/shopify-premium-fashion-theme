@@ -1,27 +1,28 @@
+{%- assign product = section.settings.product_hero -%}
+
 <div class="custom-hero-section">
-  <div class="hero-content">
-    <h2>{{ section.settings.heading }}</h2>
-    <p>{{ section.settings.description }}</p>
-    <a href="{{ section.settings.button_link }}" class="hero-button">
-      {{ section.settings.button_text }}
-    </a>
-  </div>
+  {% if product != blank %}
+    <div class="hero-content">
+      <h2>{{ product.title }}</h2>
+      <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}">
+      <p>Harga: {{ product.price | money }}</p>
+      <a href="{{ product.url }}" class="hero-button">Lihat Detail</a>
+    </div>
+  {% else %}
+    <div class="hero-content">
+      <h2>Pilih Produk</h2>
+      <p>Silakan pilih produk unggulan di pengaturan section ini.</p>
+    </div>
+  {% endif %}
 </div>
 
 <style>
-  .custom-hero-section {
-    padding: 60px 20px;
-    text-align: center;
-    background-color: #f4f4f4;
-  }
-  .hero-content h2 { margin-bottom: 20px; color: #333; }
-  .hero-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+  .custom-hero-section { padding: 60px 20px; text-align: center; background-color: #f4f4f4; }
+  .custom-hero-section img { max-width: 300px; height: auto; display: block; margin: 10px auto; }
+  .hero-button { display: inline-block; padding: 10px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 5px; }
+  
+  @media only screen and (max-width: 749px) {
+    .hero-content h2 { font-size: 24px; }
   }
 </style>
 
@@ -30,33 +31,14 @@
   "name": "Custom Hero",
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "label": "Judul",
-      "default": "Selamat Datang di Toko Kami"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Deskripsi",
-      "default": "Jelajahi koleksi fashion terbaru kami."
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Teks Tombol",
-      "default": "Belanja Sekarang"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Tautan Tombol"
+      "type": "product",
+      "id": "product_hero",
+      "label": "Pilih Produk Unggulan"
     }
   ],
   "presets": [
     {
-      "name": "Custom Hero",
-      "category": "Custom"
+      "name": "Custom Hero"
     }
   ]
 }

@@ -1,0 +1,31 @@
+<div class="product-grid-section">
+  <h2>{{ section.settings.heading }}</h2>
+  
+  <div class="grid-container">
+    {% for product in section.settings.collection.products limit: 4 %}
+      <div class="grid-item">
+        <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | money }}</p>
+        <a href="{{ product.url }}">Lihat Produk</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .grid-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .grid-item { width: 200px; text-align: center; border: 1px solid #ddd; padding: 10px; }
+  .grid-item img { max-width: 100%; }
+</style>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Judul Section", "default": "Produk Unggulan" },
+    { "type": "collection", "id": "collection", "label": "Pilih Koleksi" }
+  ],
+  "presets": [ { "name": "Product Grid" } ]
+}
+{% endschema %}
